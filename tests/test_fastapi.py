@@ -24,4 +24,4 @@ def test_read_main_second():
         assert response.status_code == 200
         assert response.json() == {"Hello": "World", "TestDep": 6}
 
-    assert "test" in [x.name for x in span_exporter.get_finished_spans()]
+    assert "read-root" in [x.name for x in span_exporter.get_finished_spans()]

@@ -19,7 +19,8 @@ def test_dependancy():
 
 @app.get("/")
 def read_root(check: Annotated[Callable, Depends(test_dependancy)]):
-    return {"Hello": "World", "TestDep": check()}
+    with tracer.start_as_current_span("read-root"):
+        return {"Hello": "World", "TestDep": check()}
 
 
 FastAPIInstrumentor.instrument_app(app)
